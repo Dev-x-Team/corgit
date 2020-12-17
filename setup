@@ -1,0 +1,34 @@
+#!bin/bash
+
+UNAME=$(uname)
+
+if [[ "$UNAME" == Linux || "$UNAME" == "Darwin" ]]
+then
+	sudo cp corgit /usr/local/bin
+
+    echo -e "1- we'll add shortcut to your shell, what shell do you use\n[bash/zsh] if you don't choose anyone, it's well added to .profile"
+    read shl
+
+    if [ "$shl" == "bash" ]
+    then
+        echo alias cgit="bash /usr/local/bin/corgit" >> ~/.bash_profile
+
+    elif [ "$shl" == "zsh" ]
+    then
+        echo alias cgit="bash /usr/local/bin/corgit" >> ~/.zshrc
+
+    else
+        echo alias cgit="bash /usr/local/bin/corgit" >> ~/.profile
+    fi
+
+elif [[ "$UNAME" == CYGWIN* || "$UNAME" == MINGW* ]]
+then
+	cp corgit /usr/bin
+
+    echo alias cgit="bash /usr/bin/corgit" >> ~/.bash_profile
+
+else
+    abdfnx="\e[1mabdfnx\e[0m"
+    echo "😕, Unidentified system..."
+    echo "support $abdfnx to add corgit to this system"
+fi

@@ -1,0 +1,249 @@
+#!bin/bash
+
+SCRIPT=$(basename "$0")
+
+version="1.0.2"
+cona="commit name: "
+brna="branch name: "
+repourl="repo url: "
+
+function usage() {
+    local txt=(
+        "Usage:"
+        "   cgit -h: help (this output)"
+        "   cgit -v: corgit version"
+        "   cgit -i: init \".git\" and push"
+        "   cgit -e: push an existing repo"
+        "   cgit -ph: push and commit"
+        "   cgit -pl: fetch and pull"
+        "   cgit -un: uninstall corgit"
+    )
+
+    printf "%s\n" "${txt[@]}"
+}
+
+function version() {
+    local txt=(
+        "$version"
+    )
+
+    printf "%s\n" "${txt[@]}"
+}
+
+function branch() {
+    echo "$brna"
+    echo " "
+    read bn
+    git branch -M $bn
+}
+
+boz() {
+    echo "bash/zsh"
+    read bz
+
+    if [ "$bz" == "bash" ]; then
+        echo unalias cgit >> ~/.bash_profile
+        source ~/.bash_profile
+
+    elif [ "$bz" == "zsh" ]; then
+        echo unalias cgit >> ~/.zshrc
+        source ~/.zshrc
+
+    else
+        echo unalias cgit >> ~/.profile
+        source ~/.profile
+    fi
+}
+
+uninstall() {
+    rmrf="\e[1mrm\e[0m"
+    manx="\e[1mmanx\e[0m"
+
+    echo -e "do you want to uninstall by $manx: recommended or $rmrf"
+    read cli
+
+    if [ "$cli" == "manx" ]; then
+        if ! [ -x "$(command -v manx)" ]; then
+            echo -e "Error: manx is not installed. do you want to install it?\n[Y/n]"
+            read mx
+
+            if [[ $mx == "" || $mx == "Y" || $mx == "y" ]]; then
+                if [[ "$UNAME" == "Linux" || "$UNAME" == "Darwin" ]]; then
+                    sudo npm i -g @abdfnx/manx
+
+                elif [[ "$UNAME" == CYGWIN* || "$UNAME" == MINGW* ]]; then
+                    npm i -g @abdfnx/manx
+                fi
+
+            else
+                echo "ok, that's means you want to uninstalled by $rmrf"
+
+                if [[ "$UNAME" == "Linux" || "$UNAME" == "Darwin" ]]; then
+                    boz
+
+                    sudo rm -rf /usr/local/bin/corgit
+
+                elif [[ "$UNAME" == CYGWIN* || "$UNAME" == MINGW* ]]; then
+                    boz
+
+                    rm -rf /usr/bin/corgit
+                fi
+
+            fi
+
+        else
+            if [[ "$UNAME" == "Linux" || "$UNAME" == "Darwin" ]]; then
+                boz
+
+                sudo manx /usr/local/bin/corgit
+
+            elif [[ "$UNAME" == CYGWIN* || "$UNAME" == MINGW* ]]; then
+                boz
+
+                manx /usr/bin/corgit
+            else
+                echo x
+            fi
+        fi
+
+    elif [ "$cli" == "rm" ]; then
+        if [[ "$UNAME" == "Linux" || "$UNAME" == "Darwin" ]]; then
+            boz
+
+            sudo rm -rf /usr/local/bin/corgit
+
+        elif [[ "$UNAME" == CYGWIN* || "$UNAME" == MINGW* ]]; then
+            boz
+
+            rm -rf /usr/bin/corgit
+
+        else
+            echo x
+        fi
+    fi
+}
+
+init() {
+    # init
+    git init
+    git add .
+
+    echo "$cona"
+    echo " "
+    read cn
+    git commit -m $cn
+
+    branch
+
+    echo "$repourl"
+    echo " "
+    read url
+    git remote add origin $url
+
+    git push -u origin $bn
+}
+
+noGit() {
+    echo -e "There's no .git folder... do so want do init it ?\n[Y/n]"
+    read -n 1 accept
+
+    if [[ $accept == "" || $accept == "Y" || $accept == "y" ]]; then
+        init
+    else
+        echo you should accept to init
+        exit 0
+    fi
+}
+
+einit() {
+    echo -e "There's no .git folder... do so want do init it ?\n[Y/n]"
+    read -n 1 accept
+
+    if [[ $accept == "" || $accept == "Y" || $accept == "y" ]]; then
+        git init
+    else
+        echo you should accept to init
+        exit 0
+    fi
+}
+
+push() {
+    if [ -d ".git" ]; then
+        # push
+        git status
+        git add .
+
+        echo "$cona"
+        read cn
+
+        git commit -m $cn
+
+        git push
+    else
+        noGit
+    fi
+}
+
+pull() {
+    if [ -d ".git" ]; then
+        # pull
+        git fetch
+        git pull
+    else
+        noGit
+    fi
+}
+
+exrepo() {
+    if [ -d ".git" ]; then
+        echo "$repourl"
+        echo " "
+        read url
+
+        echo "$brna"
+        echo " "
+        read bn
+
+        git remote add origin $url
+        git branch -M $bn
+        git push -u origin $bn
+    else
+        einit
+    fi
+}
+
+while (($#)); do
+    case "$1" in
+
+    help | h)
+        usage
+        exit 0
+        ;;
+
+    version | v)
+        version
+        exit 0
+        ;;
+
+    init | i)
+        init
+        ;;
+
+    e)
+        exrepo
+        ;;
+
+    uninstall | un)
+        uninstall
+        exit 0
+        ;;
+
+    push | ph)
+        push
+        ;;
+
+    pull | pl)
+        pull
+        ;;
+    esac
+done

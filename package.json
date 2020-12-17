@@ -1,0 +1,20 @@
+{
+  "name": "corgit",
+  "version": "1.0.0",
+  "description": "CorGit is program can init git, push commits and pull.",
+  "main": "corgit",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dev-x-Team/corgit.git"
+  },
+  "author": "abdfnx",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Dev-x-Team/corgit/issues"
+  },
+  "homepage": "https://github.com/Dev-x-Team/corgit#readme",
+  "dependencies": {}
+}
