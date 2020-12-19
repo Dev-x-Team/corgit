@@ -1,22 +1,26 @@
-#!bin/bash
+#!/bin/bash
 
-SCRIPT=$(basename "$0")
-
-version="1.0.2"
 cona="commit name: "
 brna="branch name: "
 repourl="repo url: "
+ver="1.0.2"
 
 function usage() {
     local txt=(
         "Usage:"
-        "   cgit -h: help (this output)"
-        "   cgit -v: corgit version"
-        "   cgit -i: init \".git\" and push"
-        "   cgit -e: push an existing repo"
-        "   cgit -ph: push and commit"
-        "   cgit -pl: fetch and pull"
-        "   cgit -un: uninstall corgit"
+        "   cgit h: help (this output)"
+        "   cgit v: corgit version"
+        "   cgit i: init \".git\" and push"
+        "   cgit s: status"
+        "   cgit e: push an existing repo"
+        "   cgit ph: push and commit"
+        "   cgit pl: fetch and pull"
+        " "
+        "Setup:"
+        "   bash setup"
+        " "
+        "Uninstall:"
+        "   bash un"
     )
 
     printf "%s\n" "${txt[@]}"
@@ -24,7 +28,7 @@ function usage() {
 
 function version() {
     local txt=(
-        "$version"
+        "$ver"
     )
 
     printf "%s\n" "${txt[@]}"
@@ -35,92 +39,6 @@ function branch() {
     echo " "
     read bn
     git branch -M $bn
-}
-
-boz() {
-    echo "bash/zsh"
-    read bz
-
-    if [ "$bz" == "bash" ]; then
-        echo unalias cgit >> ~/.bash_profile
-        source ~/.bash_profile
-
-    elif [ "$bz" == "zsh" ]; then
-        echo unalias cgit >> ~/.zshrc
-        source ~/.zshrc
-
-    else
-        echo unalias cgit >> ~/.profile
-        source ~/.profile
-    fi
-}
-
-uninstall() {
-    rmrf="\e[1mrm\e[0m"
-    manx="\e[1mmanx\e[0m"
-
-    echo -e "do you want to uninstall by $manx: recommended or $rmrf"
-    read cli
-
-    if [ "$cli" == "manx" ]; then
-        if ! [ -x "$(command -v manx)" ]; then
-            echo -e "Error: manx is not installed. do you want to install it?\n[Y/n]"
-            read mx
-
-            if [[ $mx == "" || $mx == "Y" || $mx == "y" ]]; then
-                if [[ "$UNAME" == "Linux" || "$UNAME" == "Darwin" ]]; then
-                    sudo npm i -g @abdfnx/manx
-
-                elif [[ "$UNAME" == CYGWIN* || "$UNAME" == MINGW* ]]; then
-                    npm i -g @abdfnx/manx
-                fi
-
-            else
-                echo "ok, that's means you want to uninstalled by $rmrf"
-
-                if [[ "$UNAME" == "Linux" || "$UNAME" == "Darwin" ]]; then
-                    boz
-
-                    sudo rm -rf /usr/local/bin/corgit
-
-                elif [[ "$UNAME" == CYGWIN* || "$UNAME" == MINGW* ]]; then
-                    boz
-
-                    rm -rf /usr/bin/corgit
-                fi
-
-            fi
-
-        else
-            if [[ "$UNAME" == "Linux" || "$UNAME" == "Darwin" ]]; then
-                boz
-
-                sudo manx /usr/local/bin/corgit
-
-            elif [[ "$UNAME" == CYGWIN* || "$UNAME" == MINGW* ]]; then
-                boz
-
-                manx /usr/bin/corgit
-            else
-                echo x
-            fi
-        fi
-
-    elif [ "$cli" == "rm" ]; then
-        if [[ "$UNAME" == "Linux" || "$UNAME" == "Darwin" ]]; then
-            boz
-
-            sudo rm -rf /usr/local/bin/corgit
-
-        elif [[ "$UNAME" == CYGWIN* || "$UNAME" == MINGW* ]]; then
-            boz
-
-            rm -rf /usr/bin/corgit
-
-        else
-            echo x
-        fi
-    fi
 }
 
 init() {
@@ -143,24 +61,17 @@ init() {
     git push -u origin $bn
 }
 
+einit() {
+    # init
+    git init
+}
+
 noGit() {
     echo -e "There's no .git folder... do so want do init it ?\n[Y/n]"
     read -n 1 accept
 
     if [[ $accept == "" || $accept == "Y" || $accept == "y" ]]; then
         init
-    else
-        echo you should accept to init
-        exit 0
-    fi
-}
-
-einit() {
-    echo -e "There's no .git folder... do so want do init it ?\n[Y/n]"
-    read -n 1 accept
-
-    if [[ $accept == "" || $accept == "Y" || $accept == "y" ]]; then
-        git init
     else
         echo you should accept to init
         exit 0
@@ -187,8 +98,16 @@ push() {
 pull() {
     if [ -d ".git" ]; then
         # pull
-        git fetch
         git pull
+    else
+        einit
+    fi
+}
+
+status() {
+    if [ -d ".git" ]; then
+        # status
+        git status
     else
         noGit
     fi
@@ -212,6 +131,18 @@ exrepo() {
     fi
 }
 
+function badUsage() {
+    local message="$1"
+    local txt=(
+        "For an overview of the command, execute:"
+        "cgit h"
+    )
+
+    [[ $message ]] && printf "$message\n"
+
+    printf "%s\n" "${txt[@]}"
+}
+
 while (($#)); do
     case "$1" in
 
@@ -225,6 +156,11 @@ while (($#)); do
         exit 0
         ;;
 
+    status | s)
+        status
+        exit 0
+        ;;
+
     init | i)
         init
         ;;
@@ -233,17 +169,17 @@ while (($#)); do
         exrepo
         ;;
 
-    uninstall | un)
-        uninstall
-        exit 0
-        ;;
-
     push | ph)
         push
         ;;
 
     pull | pl)
         pull
+        ;;
+
+    *)
+        badUsage "Option/command not recognized."
+        exit 0
         ;;
     esac
 done
