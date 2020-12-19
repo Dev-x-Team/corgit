@@ -80,15 +80,12 @@ noGit() {
 
 push() {
     if [ -d ".git" ]; then
-        # push
         git status
         git add .
-
-        echo "$cona"
+        echo $cona
+        echo " "
         read cn
-
-        git commit -m $cn
-
+        git commit -m "$cn"
         git push
     else
         noGit
