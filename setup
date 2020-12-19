@@ -9,6 +9,18 @@ successInstall() {
     echo -e "$corgit was installed successfully 🤩, type $cgit"
 }
 
+checkBash() {
+    if [ -f "~/.bash_profile" ]; then
+        echo "alias cgit=\"bash corgit"\" >>~/.bash_profile
+        source ~/.bash_profile
+
+    else
+        echo "alias cgit=\"bash corgit"\" >>~/.bashrc
+        source ~/.bashrc
+
+    fi
+}
+
 if [[ "$UNAME" == Linux || "$UNAME" == "Darwin" ]]; then
     sudo cp corgit /usr/local/bin
 
@@ -16,8 +28,7 @@ if [[ "$UNAME" == Linux || "$UNAME" == "Darwin" ]]; then
     read shl
 
     if [ "$shl" == "bash" ]; then
-        echo "alias cgit=\"bash corgit"\" >>~/.bash_profile
-        source ~/.bash_profile
+        checkBash
 
     elif [ "$shl" == "zsh" ]; then
         echo "alias cgit=\"bash corgit"\" >>~/.zshrc

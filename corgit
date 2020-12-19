@@ -34,13 +34,6 @@ function version() {
     printf "%s\n" "${txt[@]}"
 }
 
-function branch() {
-    echo "$brna"
-    echo " "
-    read bn
-    git branch -M $bn
-}
-
 init() {
     # init
     git init
@@ -51,7 +44,10 @@ init() {
     read cn
     git commit -m $cn
 
-    branch
+    echo "$brna"
+    echo " "
+    read bn
+    git branch -M $bn
 
     echo "$repourl"
     echo " "
