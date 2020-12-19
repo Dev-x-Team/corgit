@@ -16,7 +16,21 @@
 
 ---
 
-### Add it to `bin`
+### Clone
+
+first: you should clone the repo, by `gh` or `git`
+
+```bash
+# gh cli
+
+$ gh repo clone Dev-x-Team/corgit
+
+# git
+
+$ git clone https://github.com/Dev-x-Team/corgit
+```
+
+### Add it to `usr/bin`
 
 **inside `corgit` folder**
 
