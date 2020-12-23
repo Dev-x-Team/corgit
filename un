@@ -1,41 +1,7 @@
 #!/bin/bash
 
-. yml
-
-eval $(parse_yaml ans.yml "check_")
-
 echo -e "do you want to uninstall by manx: recommended or rmrf"
 read cli
-
-checkBash() {
-    if [ -f "~/.bash_profile" ]; then
-        source ~/.bash_profile
-
-    else
-        source ~/.bashrc
-
-    fi
-}
-
-boz() {
-    if [ "$check_bash" == "bash" ]; then
-        echo "unalias cgit"
-
-        checkBash
-
-    elif
-        [ "$check_zsh" == "zsh" ]
-    then
-        echo "unalias cgit"
-        source ~/.zshrc
-
-    else
-        echo "unalias cgit"
-        source ~/.profile
-
-    fi
-}
-
 
 successUninstall() {
     echo "corgit was uninstalled successfully... 👋"
@@ -44,16 +10,12 @@ successUninstall() {
 manxopa() {
     if [ -x "$(command -v manx)" ]; then
         if [[ "$UNAME" == "Linux" || "$UNAME" == "Darwin" ]]; then
-            boz
-
             successUninstall
 
-            sudo manx /usr/local/bin/corgit
+            sudo manx /usr/local/bin/cgit
 
         else
-            echo "unalias cgit"
-
-            manx /usr/bin/corgit
+            manx /usr/bin/cgit
 
             successUninstall
 
@@ -84,49 +46,28 @@ if [[ -x "$(command -v cgit)" || -x "$(command -v corgit)" ]]; then
                 echo "ok, that's means you want to uninstalled it by $rmrf"
 
                 if [[ "$UNAME" == "Linux" || "$UNAME" == "Darwin" ]]; then
-                    if [ "$check_bash" == "bash" ]; then
-                        echo "unalias cgit"
 
-                        checkBash
-
-                    elif [ "$check_zsh" == "zsh" ]; then
-                        echo "unalias cgit"
-                        source ~/.zshrc
-
-                    else
-                        echo "unalias cgit"
-                        source ~/.profile
-
-                    fi
-
-                    sudo rm -rf /usr/local/bin/corgit
-
-                else
-                    echo "unalias cgit"
-
-                    checkBash
+                    sudo rm -rf /usr/local/bin/cgit
 
                     successUninstall
 
-                    rm -rf /usr/bin/corgit
+                else
+
+                    rm -rf /usr/bin/cgit
+                    successUninstall
                 fi
 
             fi
 
         else
             if [[ "$UNAME" == "Linux" || "$UNAME" == "Darwin" ]]; then
-                boz
+                sudo manx /usr/local/bin/cgit
 
                 successUninstall
 
-                sudo manx /usr/local/bin/corgit
-
             else
-                echo "unalias cgit"
 
-                manx /usr/bin/corgit
-
-                checkBash
+                manx /usr/bin/cgit
 
                 successUninstall
 
@@ -135,30 +76,13 @@ if [[ -x "$(command -v cgit)" || -x "$(command -v corgit)" ]]; then
 
     elif [ "$cli" == "rm" ]; then
         if [[ "$UNAME" == "Linux" || "$UNAME" == "Darwin" ]]; then
-            if [ "$check_bash" == "bash" ]; then
-                echo "unalias cgit"
-
-                checkBash
-
-            elif [ "$check_zsh" == "zsh" ]; then
-                echo "unalias cgit"
-                source ~/.zshrc
-
-            else
-                echo "unalias cgit"
-                source ~/.profile
-
-            fi
+            sudo rm -rf /usr/local/bin/cgit
 
             successUninstall
 
-            sudo rm -rf /usr/local/bin/corgit
-
         else
-            echo "unalias cgit"
-            rm -rf /usr/bin/corgit
 
-            checkBash
+            rm -rf /usr/bin/cgit
 
             successUninstall
 

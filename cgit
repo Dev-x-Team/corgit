@@ -8,10 +8,10 @@ ver="1.0.2"
 function usage() {
     corgit="\e[1mcorgit\e[0m"
 
-    local txt=(
+    local u=(
         "Usage:"
-        "   cgit h: help (this output)"
-        "   cgit v: corgit version"
+        "   cgit -h: help (this output)"
+        "   cgit -v: corgit version"
         "   cgit i: init \".git\" and push"
         "   cgit s: status"
         "   cgit e: push an existing repo"
@@ -20,35 +20,44 @@ function usage() {
         " "
         "Inside $corgit folder "
         "Setup:"
-        "   bash setup"
+        "   ./setup"
         " "
         "Uninstall:"
-        "   bash un"
+        "   ./un"
     )
 
-    printf "%s\n" "${txt[@]}"
+    printf "%s\n" "${u[@]}"
 }
 
 function version() {
-    local txt=(
+    local v=(
         "$ver"
     )
 
-    printf "%s\n" "${txt[@]}"
+    printf "%s\n" "${v[@]}"
 }
 
-init() {
+initx() {
     # init
     git init
     git add .
 
-    git commit -m "$1"
+    echo "$cona"
+    echo " "
+    read cn
+    git commit -m "$cn"
 
-    git branch -M main
+    echo "$brna"
+    echo " "
+    read bn
+    git branch -M $bn
 
+    echo $repourl
+    echo " "
+    read url
     git remote add origin $url
 
-    git push -u origin main
+    git push -u origin $bn
 }
 
 einit() {
@@ -61,14 +70,14 @@ noGit() {
     read -n 1 accept
 
     if [[ $accept == "" || $accept == "Y" || $accept == "y" ]]; then
-        init
+        initx
     else
         echo you should accept to init
         exit 0
     fi
 }
 
-push() {
+pushx() {
     if [ -d ".git" ]; then
         git status
         git add .
@@ -82,7 +91,7 @@ push() {
     fi
 }
 
-pull() {
+pullx() {
     if [ -d ".git" ]; then
         # pull
         git pull
@@ -119,13 +128,13 @@ exrepo() {
 }
 
 function badUsage() {
-    local message="$1"
+    local msg="$1"
     local txt=(
         "For an overview of the command, execute:"
         "cgit h"
     )
 
-    [[ $message ]] && printf "$message\n"
+    [[ $msg ]] && printf "$msg\n"
 
     printf "%s\n" "${txt[@]}"
 }
@@ -133,12 +142,12 @@ function badUsage() {
 while (($#)); do
     case "$1" in
 
-    help | h)
+    --help | -h)
         usage
         exit 0
         ;;
 
-    version | v)
+    --version | -v)
         version
         exit 0
         ;;
@@ -149,19 +158,23 @@ while (($#)); do
         ;;
 
     init | i)
-        init
+        initx
+        exit 0
         ;;
 
     e)
         exrepo
+        exit 0
         ;;
 
     push | ph)
-        push
+        pushx
+        exit 0
         ;;
 
     pull | pl)
-        pull
+        pullx
+        exit 0
         ;;
 
     *)

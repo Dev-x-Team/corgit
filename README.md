@@ -37,27 +37,27 @@ $ git clone https://github.com/Dev-x-Team/corgit
 `setup` file'll do all the work 👌
 
 ```bash
-$ bash setup
+$ setup
 ```
 
 if you want to uninstall it type
 
 ```bash
-$ bash un
+$ un
 ```
 
 ### Test it
 
 ```bash
-$ cgit <operation>
+$ cgit <command>
 
 # for help
 
-$ cgit h
+$ cgit -h
 
 Usage:
-    cgit h: help (this output)
-    cgit v: corgit version
+    cgit -h: help (this output)
+    cgit -v: corgit version
     cgit i: init .git and push
     cgit s: status
     cgit e: push an existing repo
@@ -65,10 +65,10 @@ Usage:
     cgit pl: fetch and pull
 
 Setup:
-    bash setup
+    ./setup
 
 Uninstall:
-    bash un
+    ./un
 ```
 
 select anyone and hack
