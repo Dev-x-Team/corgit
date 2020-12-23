@@ -37,13 +37,13 @@ $ git clone https://github.com/Dev-x-Team/corgit
 `setup` file'll do all the work 👌
 
 ```bash
-$ setup
+$ ./setup
 ```
 
 if you want to uninstall it type
 
 ```bash
-$ un
+$ ./un
 ```
 
 ### Test it
