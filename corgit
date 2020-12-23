@@ -6,6 +6,8 @@ repourl="repo url: "
 ver="1.0.2"
 
 function usage() {
+    corgit="\e[1mcorgit\e[0m"
+
     local txt=(
         "Usage:"
         "   cgit h: help (this output)"
@@ -16,6 +18,7 @@ function usage() {
         "   cgit ph: push and commit"
         "   cgit pl: fetch and pull"
         " "
+        "Inside $corgit folder "
         "Setup:"
         "   bash setup"
         " "
@@ -39,22 +42,13 @@ init() {
     git init
     git add .
 
-    echo "$cona"
-    echo " "
-    read cn
-    git commit -m $cn
+    git commit -m "$1"
 
-    echo "$brna"
-    echo " "
-    read bn
-    git branch -M $bn
+    git branch -M main
 
-    echo "$repourl"
-    echo " "
-    read url
     git remote add origin $url
 
-    git push -u origin $bn
+    git push -u origin main
 }
 
 einit() {

@@ -4,10 +4,7 @@
 
 eval $(parse_yaml ans.yml "check_")
 
-rmrf="\e[1mrm\e[0m"
-manx="\e[1mmanx\e[0m"
-
-echo -e "do you want to uninstall by $manx: recommended or $rmrf"
+echo -e "do you want to uninstall by manx: recommended or rmrf"
 read cli
 
 checkBash() {
