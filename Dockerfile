@@ -1,8 +1,8 @@
 FROM ubuntu:latest
 
-COPY setup corgit un ./
+COPY setup cgit un ./
 
 RUN ./setup
-RUN cgit h
+RUN bash cgit -h
 
 CMD [ "cgit" ]
