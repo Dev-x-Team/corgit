@@ -4,7 +4,7 @@
 cona="commit name: "
 brna="branch name: "
 repourl="repo url: "
-ver="1.0.2"
+ver="1.0.3"
 UNAME=$(uname)
 
 function usage() {
@@ -113,7 +113,20 @@ statusList() {
             colorls -al --git-status
 
         else
-            echo -e "there's no colorls, you can install it by type\n gem install colorls"
+            echo -e "there's no colorls\ndo you want to install it\n[Y/n]"
+
+            read -n 1 accept
+
+            if [[ $accept == "" || $accept == "Y" || $accept == "y" ]]; then
+                sudo gem install colorls
+
+                if [ -x "$(command -v colorls)" ]; then
+                    colorls -al --git-status
+                fi
+            else
+                echo "you should accept to install"
+                exit 0
+            fi
 
         fi
     else
@@ -171,7 +184,6 @@ exrepo() {
         einit
     fi
 }
-
 
 while (($#)); do
     case "$1" in

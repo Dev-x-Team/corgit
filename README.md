@@ -1,4 +1,4 @@
-# [<img src=.github/CG.svg align="center">]()
+# [<img src=".github/CG.svg" align="center">]()
 
 [git][gitUrl] is one of the most used tools in the world,
 <br />
@@ -72,7 +72,7 @@ it's not very pretty
 
 but if you type `cgit sl`
 
-
+![Result](https://dev-to-uploads.s3.amazonaws.com/i/ctgcbxw1ywz6y1u4jdri.png)
 
 and you can check more in [cgit wikis](/wiki)
 
