@@ -10,9 +10,13 @@ successInstall() {
 if [ -x "$(command -v curl)" ]; then
     if [[ "$UNAME" == Linux || "$UNAME" == "Darwin" ]]; then
         if [ -x "$(command -v sudo)" ]; then
-            sudo wget -P /usr/local/bin $cgitUrl 
+            sudo wget -P /usr/local/bin $cgitUrl
+
+            sudo chmod 755 /usr/local/bin/cgit
         else
             wget -P /usr/local/bin $cgitUrl
+
+            chmod 755 /usr/local/bin/cgit
         fi
 
         successInstall

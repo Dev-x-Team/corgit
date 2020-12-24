@@ -1,0 +1,15 @@
+language : bash
+
+# Remind Travis to tell us what is going on while script is running
+verbose : true
+
+# Tell Travis to use Ubuntu distro for building the project
+dist : trusty
+
+# Tell Travis to build each project in an isolated Google Compute Engine
+sudo : required
+
+# Tell Travis to test builds in the Linux, Windows, and MacOS Operating Systems
+os : [ linux, windows, osx ]
+script : # Give Travis the command(s) to run in the build simulation
+  - "/bin/bash -c \"$(curl -fsSL https://raw.githubusercontent.com/Dev-x-Team/corgit/main/setup)\""
