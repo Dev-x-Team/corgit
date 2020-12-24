@@ -7,8 +7,6 @@ successInstall() {
     echo -e "corgit was installed successfully 🤩, type cgit -h"
 }
 
-wget $cgitUrl -O 
-
 # if [[ "$UNAME" == Linux || "$UNAME" == "Darwin" ]]; then
 #     if [ -x "$(command -v sudo)" ]; then
 #         sudo cp $cgitUrl ~/tests
