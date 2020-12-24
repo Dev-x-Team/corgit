@@ -10,9 +10,9 @@ successInstall() {
 if [ -x "$(command -v wget)" ]; then
     if [[ "$UNAME" == Linux || "$UNAME" == "Darwin" ]]; then
         if [ -x "$(command -v sudo)" ]; then
-            sudo wget $cgitUrl -O /usr/local/bin/cgit
+            sudo wget $cgitUrl -O /usr/bin/cgit
         else
-            wget $cgitUrl -O /usr/local/bin/cgit
+            wget $cgitUrl -O /usr/bin/cgit
         fi
 
         successInstall
