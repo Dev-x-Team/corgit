@@ -38,7 +38,7 @@ function badUsage() {
     local msg="$1"
     local txt=(
         "For an overview of the command, execute:"
-        "cgit h"
+        "cgit -h"
     )
 
     [[ $msg ]] && printf "$msg\n"
