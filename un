@@ -25,7 +25,7 @@ manxopa() {
     fi
 }
 
-if [[ -x "$(command -v cgit)" || -x "$(command -v corgit)" ]]; then
+if [ -x "$(command -v cgit)" ]; then
     if [ "$cli" == "manx" ]; then
         if ! [ -x "$(command -v manx)" ]; then
             echo -e "Error: manx is not installed. do you want to install it?\n[Y/n]"
@@ -89,6 +89,9 @@ if [[ -x "$(command -v cgit)" || -x "$(command -v corgit)" ]]; then
             successUninstall
 
         fi
+    
+    else
+        echo "wrong input 🤯"
     fi
 
 else

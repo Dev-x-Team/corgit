@@ -88,40 +88,16 @@ and you can check more in [cgit wikis](/wiki)
 #### if you are using `Windows` you should install git bash
 
 #### [url](https://git-scm.com/download/win)
-#### **or you can install and configure [WSL][wslUrl]** 👍
+#### _**or you can install and configure [WSL][wslUrl]** 👍: recommended_
 
 ---
 
-### Clone
+### Install
 
-first: you should clone the repo, by `gh` or `git`
+copy this 👇 and paste it in the __terminal__
 
-```bash
-# gh cli
-
-$ gh repo clone Dev-x-Team/corgit
-
-# git
-
-$ git clone https://github.com/Dev-x-Team/corgit
-```
-
-### Add it to `usr/bin`
-
-_in Linux or Mac platform, it's well add it to `usr/local/bin`_
-
-**inside `corgit` folder**
-
-`setup` file'll do all the work 👌
-
-```bash
-$ ./setup
-```
-
-if you want to uninstall it type
-
-```bash
-$ ./un
+```sh
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Dev-x-Team/corgit/HEAD/setup)"
 ```
 
 ### Test it
@@ -137,6 +113,7 @@ Usage:
     cgit -h: help (this output)
     cgit -v: corgit version
     cgit -d: show description
+    cgit -dv: show corgit repo
     cgit i: init .git and push origin
     cgit s: status
     cgit sl: show the status of git by list view
@@ -144,16 +121,17 @@ Usage:
     cgit ph: push and commit
     cgit pl: fetch and pull
 
+Inside corgit folder 
 Setup:
-    ./setup
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Dev-x-Team/corgit/HEAD/setup)"
 
 Uninstall:
-    ./un
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Dev-x-Team/corgit/HEAD/un)"
+
+you can open an issue if you had any problem in https://github.com/Dev-x-Team/corgit/issues
 ```
 
-select anyone and hack
-
-you can open issue if you have any problem
+type anyone and hack
 
 [wslUrl]: https://docs.microsoft.com/en-us/windows/wsl/
 [gitUrl]: https://git-scm.com/
