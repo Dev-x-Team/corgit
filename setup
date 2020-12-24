@@ -8,9 +8,9 @@ successInstall() {
 
 if [[ "$UNAME" == Linux || "$UNAME" == "Darwin" ]]; then
     if [ -x "$(command -v sudo)" ]; then
-        sudo cp cgit ~/tests
+        sudo cp cgit /usr/local/bin
     else
-        cp cgit ~/tests
+        cp cgit /usr/local/bin
     fi
 
     successInstall
