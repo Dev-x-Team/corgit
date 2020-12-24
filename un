@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo -e "do you want to uninstall by manx: recommended or rmrf"
+echo -e "do you want to uninstall by manx: recommended orrm"
 read cli
 
 UNAME=$(uname)
@@ -45,7 +45,7 @@ if [ -x "$(command -v cgit)" ]; then
 
             else
 
-                echo "ok, that's means you want to uninstalled it by $rmrf"
+                echo "ok, that's means you want to uninstalled it by rm"
 
                 if [[ "$UNAME" == "Linux" || "$UNAME" == "Darwin" ]]; then
 
