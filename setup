@@ -1,6 +1,7 @@
 #!/bin/bash
 
 UNAME=$(uname)
+cgitUrl=https://raw.githubusercontent.com/Dev-x-Team/corgit/HEAD/cgit
 
 successInstall() {
     echo -e "corgit was installed successfully 🤩, type cgit -h"
@@ -8,15 +9,15 @@ successInstall() {
 
 if [[ "$UNAME" == Linux || "$UNAME" == "Darwin" ]]; then
     if [ -x "$(command -v sudo)" ]; then
-        sudo cp cgit /usr/local/bin
+        sudo cp $cgitUrl /usr/local/bin
     else
-        cp cgit /usr/local/bin
+        cp $cgitUrl /usr/local/bin
     fi
 
     successInstall
 
 elif [[ "$UNAME" == CYGWIN* || "$UNAME" == MINGW* ]]; then
-    cp cgit /usr/bin
+    cp $cgitUrl /usr/bin
 
     successInstall
 
