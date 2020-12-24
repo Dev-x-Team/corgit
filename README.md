@@ -1,4 +1,4 @@
-# [<img src=.github/CG.svg>](#)
+# [<img src=.github/CG.svg align="center">]()
 
 [git][gitUrl] is one of the most used tools in the world,
 <br />
@@ -109,6 +109,7 @@ Usage:
     cgit -d: show description
     cgit i: init .git and push origin
     cgit s: status
+    cgit sl: show the status of git by list view
     cgit e: push an existing repo
     cgit ph: push and commit
     cgit pl: fetch and pull

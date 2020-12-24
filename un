@@ -3,6 +3,8 @@
 echo -e "do you want to uninstall by manx: recommended or rmrf"
 read cli
 
+UNAME=$(uname)
+
 successUninstall() {
     echo "corgit was uninstalled successfully... 👋"
 }

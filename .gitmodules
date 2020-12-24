@@ -2,3 +2,8 @@
 	path = api
 	url = https://github.com/abdfnx/corgit-site
 	ignore = dirty
+
+[submodule "corgit.wiki"]
+	path = corgit.wiki
+	url = https://github.com/Dev-x-Team/corgit/wiki
+	ignore = dirty
