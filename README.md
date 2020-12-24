@@ -46,6 +46,34 @@ $ cgit ph
 # it's well just ask you commit msg
 ```
 
+**git status in list view**
+
+_hint: you should install `colorls` to show this_
+
+in orginal git, if you type `git status`
+
+it's well show you like this
+
+```sh
+$ git status
+
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   README.md
+
+no changes added to commit (use "git add" and/or "git commit -a")
+```
+
+it's not very pretty
+
+but if you type `cgit sl`
+
+
+
 and you can check more in [cgit wikis](/wiki)
 
 > CorGit is a Cli program can automate init git, push commits and pull.
