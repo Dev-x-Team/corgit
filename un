@@ -26,7 +26,7 @@ manxopa() {
 if [[ -x "$(command -v cgit)" || -x "$(command -v corgit)" ]]; then
     if [ "$cli" == "manx" ]; then
         if ! [ -x "$(command -v manx)" ]; then
-            echo -e "Error: $manx is not installed. do you want to install it?\n[Y/n]"
+            echo -e "Error: manx is not installed. do you want to install it?\n[Y/n]"
             read mx
 
             if [[ $mx == "" || $mx == "Y" || $mx == "y" ]]; then

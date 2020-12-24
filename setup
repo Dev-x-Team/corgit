@@ -3,10 +3,7 @@
 UNAME=$(uname)
 
 successInstall() {
-    corgit="\e[1mcorgit\e[0m"
-    cgit="\e[1mcgit h\e[0m"
-
-    echo -e "$corgit was installed successfully 🤩, type $cgit"
+    echo -e "corgit was installed successfully 🤩, type cgit -h"
 }
 
 if [[ "$UNAME" == Linux || "$UNAME" == "Darwin" ]]; then
@@ -20,7 +17,6 @@ elif [[ "$UNAME" == CYGWIN* || "$UNAME" == MINGW* ]]; then
     successInstall
 
 else
-    abdfnx="\e[1mabdfnx\e[0m"
     echo "😕, Unidentified system..."
-    echo -e "support $abdfnx to add corgit to this system"
+    echo -e "support abdfnx to add corgit to this system"
 fi

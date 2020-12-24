@@ -5,4 +5,4 @@ COPY setup cgit un ./
 RUN ./setup
 RUN bash cgit -h
 
-CMD [ "cgit" ]
+CMD [ "cgit -h" ]

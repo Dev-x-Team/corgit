@@ -6,19 +6,18 @@ repourl="repo url: "
 ver="1.0.2"
 
 function usage() {
-    corgit="\e[1mcorgit\e[0m"
-
     local u=(
         "Usage:"
         "   cgit -h: help (this output)"
+        "   cgit -d: show description"
         "   cgit -v: corgit version"
-        "   cgit i: init \".git\" and push"
+        "   cgit i: init \".git\" and push origin"
         "   cgit s: status"
         "   cgit e: push an existing repo"
         "   cgit ph: push and commit"
         "   cgit pl: fetch and pull"
         " "
-        "Inside $corgit folder "
+        "Inside corgit folder "
         "Setup:"
         "   ./setup"
         " "
@@ -35,6 +34,10 @@ function version() {
     )
 
     printf "%s\n" "${v[@]}"
+}
+
+function desc() {
+
 }
 
 initx() {
@@ -66,6 +69,7 @@ einit() {
 }
 
 noGit() {
+    # if the dic doesn't has .git folder
     echo -e "There's no .git folder... do so want do init it ?\n[Y/n]"
     read -n 1 accept
 
@@ -78,6 +82,7 @@ noGit() {
 }
 
 pushx() {
+    # push
     if [ -d ".git" ]; then
         git status
         git add .
@@ -92,8 +97,8 @@ pushx() {
 }
 
 pullx() {
+    # pull
     if [ -d ".git" ]; then
-        # pull
         git pull
     else
         einit
@@ -101,8 +106,8 @@ pullx() {
 }
 
 status() {
+    # status
     if [ -d ".git" ]; then
-        # status
         git status
     else
         noGit
@@ -149,6 +154,11 @@ while (($#)); do
 
     --version | -v)
         version
+        exit 0
+        ;;
+
+    --desc | --description | -d)
+        desc
         exit 0
         ;;
 
