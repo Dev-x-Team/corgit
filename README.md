@@ -80,7 +80,7 @@ $ git clone https://github.com/Dev-x-Team/corgit
 
 ### Add it to `usr/bin`
 
-_in Linux or Darwin platform, it's well add it to `usr/local/bin`_
+_in Linux or Mac platform, it's well add it to `usr/local/bin`_
 
 **inside `corgit` folder**
 
