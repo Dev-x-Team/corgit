@@ -2,7 +2,7 @@
 
 [git][gitUrl] is one of the most used tools in the world,
 <br />
-but there's some rotaine commands you always do it
+but there's some routine commands you always do it
 <br />
 corgit'll do all this boring work,
 <br />
