@@ -97,7 +97,7 @@ and you can check more in [cgit wikis](/wiki)
 copy this 👇 and paste it in the __terminal__
 
 ```sh
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Dev-x-Team/corgit/HEAD/setup)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Dev-x-Team/corgit/main/setup)"
 ```
 
 ### Test it
@@ -123,10 +123,10 @@ Usage:
 
 Inside corgit folder 
 Setup:
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Dev-x-Team/corgit/HEAD/setup)"
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Dev-x-Team/corgit/main/setup)"
 
 Uninstall:
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Dev-x-Team/corgit/HEAD/un)"
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Dev-x-Team/corgit/main/un)"
 
 you can open an issue if you had any problem in https://github.com/Dev-x-Team/corgit/issues
 ```
