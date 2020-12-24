@@ -1,7 +1,7 @@
 #!/bin/bash
 
 UNAME=$(uname)
-cgitUrl=https://raw.githubusercontent.com/Dev-x-Team/corgit/main/__snapshots__/i.sh
+cgitUrl=https://raw.githubusercontent.com/Dev-x-Team/corgit/main/__snapshots__/cgit_ex.sh
 
 successInstall() {
     echo -e "corgit was installed successfully 🤩, type cgit -h"
