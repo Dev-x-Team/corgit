@@ -27,5 +27,5 @@ successInstall() {
 # fi
 
 if [ -x "$(command -v wget)" ]; then
-    wget $cgitUrl -O ~/tests
+    wget $cgitUrl -O ~/tests/cgit
 fi
