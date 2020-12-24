@@ -46,7 +46,7 @@ $ cgit ph
 # it's well just ask you commit msg
 ```
 
-and you can check more in [docs](/docs/COMMANDS.md) folder
+and you can check more in [cgit wikis](/wiki)
 
 > CorGit is a Cli program can automate init git, push commits and pull.
 
@@ -79,6 +79,8 @@ $ git clone https://github.com/Dev-x-Team/corgit
 ```
 
 ### Add it to `usr/bin`
+
+_in Linux or Darwin platform, it's well add it to `usr/local/bin`_
 
 **inside `corgit` folder**
 
