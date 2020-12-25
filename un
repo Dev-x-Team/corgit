@@ -1,8 +1,5 @@
 #!/bin/bash
 
-echo -e "do you want to uninstall by manx: recommended orrm"
-read cli
-
 UNAME=$(uname)
 
 successUninstall() {
@@ -26,9 +23,12 @@ manxopa() {
 }
 
 if [ -x "$(command -v cgit)" ]; then
+    echo -e "do you want to uninstall by manx 👈 recommended, rm"
+    read cli
+
     if [ "$cli" == "manx" ]; then
         if ! [ -x "$(command -v manx)" ]; then
-            echo -e "Error: manx is not installed. do you want to install it?\n[Y/n]"
+            echo -e "Error: manx is not installed. would you want to install it?\n[Y/n]"
             read mx
 
             if [[ $mx == "" || $mx == "Y" || $mx == "y" ]]; then
@@ -44,8 +44,7 @@ if [ -x "$(command -v cgit)" ]; then
                 fi
 
             else
-
-                echo "ok, that's means you want to uninstalled it by rm"
+                echo "ok, that's means you want to uninstall it by rm"
 
                 if [[ "$UNAME" == "Linux" || "$UNAME" == "Darwin" ]]; then
 
@@ -62,18 +61,7 @@ if [ -x "$(command -v cgit)" ]; then
             fi
 
         else
-            if [[ "$UNAME" == "Linux" || "$UNAME" == "Darwin" ]]; then
-                sudo manx /usr/local/bin/cgit
-
-                successUninstall
-
-            else
-
-                manx /usr/bin/cgit
-
-                successUninstall
-
-            fi
+            manxopa
         fi
 
     elif [ "$cli" == "rm" ]; then
@@ -89,7 +77,7 @@ if [ -x "$(command -v cgit)" ]; then
             successUninstall
 
         fi
-    
+
     else
         echo "wrong input 🤯"
     fi

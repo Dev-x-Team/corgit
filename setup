@@ -2,21 +2,22 @@
 
 UNAME=$(uname)
 cgitUrl=https://raw.githubusercontent.com/Dev-x-Team/corgit/main/cgit
+cgitLocLD=/usr/local/bin
 
 successInstall() {
-    echo -e "corgit was installed successfully 🤩, type cgit -h"
+    echo "corgit was installed successfully 🤩, type cgit -h"
 }
 
 if [ -x "$(command -v curl)" ]; then
     if [[ "$UNAME" == Linux || "$UNAME" == "Darwin" ]]; then
         if [ -x "$(command -v sudo)" ]; then
-            sudo wget -P /usr/local/bin $cgitUrl
+            sudo wget -P $cgitLocLD $cgitUrl
 
-            sudo chmod 755 /usr/local/bin/cgit
+            sudo chmod 755 $cgitLocLD/cgit
         else
-            wget -P /usr/local/bin $cgitUrl
+            wget -P $cgitLocLD $cgitUrl
 
-            chmod 755 /usr/local/bin/cgit
+            chmod 755 $cgitLocLD/cgit
         fi
 
         successInstall

@@ -24,7 +24,6 @@ function usage() {
         "   cgit ph: push and commit"
         "   cgit pl: fetch and pull"
         " "
-        "Inside corgit folder "
         "Setup:"
         "   /bin/bash -c \"$dollar(curl -fsSL https://raw.githubusercontent.com/Dev-x-Team/corgit/main/setup)\""
         " "
@@ -101,7 +100,7 @@ einit() {
 
 noGit() {
     # if the dic doesn't has .git folder
-    echo -e "There's no .git folder... do so want do init it ?\n[Y/n]"
+    echo -e "There's no .git folder... so would you want to init it ?\n[Y/n]"
     read -n 1 accept
 
     if [[ $accept == "" || $accept == "Y" || $accept == "y" ]]; then
@@ -138,7 +137,6 @@ statusList() {
             else
                 ysa
             fi
-
         fi
     else
         echo "colorls does not support this system 😔"

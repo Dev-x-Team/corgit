@@ -121,7 +121,6 @@ Usage:
     cgit ph: push and commit
     cgit pl: fetch and pull
 
-Inside corgit folder 
 Setup:
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Dev-x-Team/corgit/main/setup)"
 
