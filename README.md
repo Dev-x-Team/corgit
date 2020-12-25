@@ -36,6 +36,7 @@ in original git
 # push
 $ git add .
 $ git commit -m "$COMMIT_MSG"
+$ git push
 ```
 
 in **cgit**
