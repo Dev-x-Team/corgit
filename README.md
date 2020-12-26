@@ -10,18 +10,18 @@ corgit'll do all this boring work,
 
 ```sh
 # init
-$ git init
-$ git add .
-$ git commit -m "$COMMIT_MSG"
-$ git branch -M $BRANCH_NAME
-$ git remote add origin $REPO_URL
-$ git push -u origin $BRANCH_NAME
+❯ git init
+❯ git add .
+❯ git commit -m "$COMMIT_MSG"
+❯ git branch -M $BRANCH_NAME
+❯ git remote add origin $REPO_URL
+❯ git push -u origin $BRANCH_NAME
 ```
 
 you should type 6 lines, in corgit you can do it simpley
 
 ```sh
-$ cgit i
+❯ cgit i
 
 # it's well ask you, commit message, branch name, repo url, and push it
 ```
@@ -34,15 +34,15 @@ in original git
 
 ```sh
 # push
-$ git add .
-$ git commit -m "$COMMIT_MSG"
-$ git push
+❯ git add .
+❯ git commit -m "$COMMIT_MSG"
+❯ git push
 ```
 
 in **cgit**
 
 ```sh
-$ cgit ph
+❯ cgit ph
 
 # it's well just ask you commit msg
 ```
@@ -56,7 +56,7 @@ in orginal git, if you type `git status`
 it's well show you like this
 
 ```sh
-$ git status
+❯ git status
 
 On branch main
 Your branch is up to date with 'origin/main'.
@@ -104,11 +104,11 @@ copy this 👇 and paste it in the __terminal__
 ### Test it
 
 ```bash
-$ cgit <command>
+❯ cgit <command>
 
 # for help
 
-$ cgit -h
+❯ cgit -h
 
 Usage:
     cgit -h: help (this output)
