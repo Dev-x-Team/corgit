@@ -98,7 +98,7 @@ and you can check more in [cgit wikis](/wiki)
 copy this 👇 and paste it in the __terminal__
 
 ```sh
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Dev-x-Team/corgit/main/setup)"
+❯ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Dev-x-Team/corgit/main/setup)"
 ```
 
 ### Test it
