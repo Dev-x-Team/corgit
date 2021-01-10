@@ -235,6 +235,27 @@ exrepo() {
     fi
 }
 
+# for secman
+function secman-i() {
+    local GH_Username=$(git config user.name)
+    
+    # secman init
+    git init
+    git add .
+    git commit -m "init secman passwords"
+    git branch -M trunk
+    git remote add origin https://github.com/$GH_Username/.secman
+    git push -u origin trunk
+}
+
+function secman-ph() {
+    pushx
+}
+
+function secman-pl() {
+    pullx
+}
+
 while (($#)); do
     case "$1" in
 
@@ -285,6 +306,20 @@ while (($#)); do
 
     pull | pl)
         pullx
+        exit 0
+        ;;
+
+    secman-i)
+        secman-i
+        exit 0
+        ;;
+    
+    secman-ph)
+        secman-ph
+        exit 0
+        ;;
+    secman-pl)
+        secman-pl
         exit 0
         ;;
 
