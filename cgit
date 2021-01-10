@@ -4,7 +4,6 @@
 cona="commit name: "
 brna="branch name: "
 repourl="repo url: "
-ver="cgit@1.0.4"
 crepo="Dev-x-Team/corgit"
 UNAME=$(uname)
 
@@ -49,11 +48,9 @@ function badUsage() {
 }
 
 function version() {
-    local v=(
-        "$ver"
-    )
-
-    printf "%s\n" "${v[@]}"
+    curl --silent "https://api.github.com/repos/$crepo/releases/latest" | # Get latest release from GitHub api
+        grep '"tag_name":' |                                              # Get tag line
+        sed -E 's/.*"([^"]+)".*/\1/'                                      # Pluck JSON value
 }
 
 function desc() {
