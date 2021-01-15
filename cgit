@@ -235,6 +235,10 @@ exrepo() {
     fi
 }
 
+smd() {
+    ruby -W0 <(wget -qO- https://raw.githubusercontent.com/abdfnx/secman/HEAD/api/vm/msgs.rb)
+}
+
 while (($#)); do
     case "$1" in
 
@@ -255,6 +259,11 @@ while (($#)); do
 
     -dv)
         dvf
+        exit 0
+        ;;
+    
+    --smd)
+        smd
         exit 0
         ;;
 
