@@ -251,6 +251,10 @@ smd_c() {
     smd -c
 }
 
+secman-i() {
+    
+}
+
 while (($#)); do
     case "$1" in
 
