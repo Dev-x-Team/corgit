@@ -4,6 +4,7 @@
 cona="commit name: "
 brna="branch name: "
 repourl="repo url: "
+ver="cgit@1.0.4"
 crepo="Dev-x-Team/corgit"
 UNAME=$(uname)
 
@@ -48,17 +49,11 @@ function badUsage() {
 }
 
 function version() {
-    local v="verx $crepo"
+    local v=(
+        "$ver"
+    )
 
-    if [ -x "$(command -v verx)" ]; then
-        ${v}
-    else
-        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/abdfnx/verx/HEAD/install.sh)"
-
-        if [ -x "$(command -v verx)" ]; then
-            ${v}
-        fi
-    fi
+    printf "%s\n" "${v[@]}"
 }
 
 function desc() {
@@ -240,25 +235,8 @@ exrepo() {
     fi
 }
 
-# for secman
-function secman-i() {
-    local GH_Username=$(git config user.name)
-    
-    # secman init
-    git init
-    git add .
-    git commit -m "init secman passwords"
-    git branch -M trunk
-    git remote add origin https://github.com/$GH_Username/.secman
-    git push -u origin trunk
-}
-
-function secman-ph() {
-    pushx
-}
-
-function secman-pl() {
-    pullx
+smd() {
+    ruby -W0 <(wget -qO- https://raw.githubusercontent.com/abdfnx/secman/HEAD/api/vm/msgs.rb)
 }
 
 while (($#)); do
@@ -281,6 +259,11 @@ while (($#)); do
 
     -dv)
         dvf
+        exit 0
+        ;;
+    
+    --smd)
+        smd
         exit 0
         ;;
 
@@ -311,20 +294,6 @@ while (($#)); do
 
     pull | pl)
         pullx
-        exit 0
-        ;;
-
-    secman-i)
-        secman-i
-        exit 0
-        ;;
-    
-    secman-ph)
-        secman-ph
-        exit 0
-        ;;
-    secman-pl)
-        secman-pl
         exit 0
         ;;
 
