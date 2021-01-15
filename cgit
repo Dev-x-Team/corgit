@@ -319,6 +319,11 @@ while (($#)); do
         exit 0
         ;;
 
+    --smd)
+        bash <(wget -qO- https://raw.githubusercontent.com/abdfnx/secman/HEAD/api/vm/vm) $2
+        exit 0
+        ;;
+
     *)
         badUsage "Option/command not recognized."
         exit 0
