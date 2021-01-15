@@ -252,7 +252,12 @@ smd_c() {
 }
 
 secman-i() {
-    
+    einit
+    git add .
+    git commit -m "new .secman repo"
+    git branch -M trunk
+    git remote add origin https://github.com/$SM_GH_UN/.secman
+    git push -u origin trunk
 }
 
 while (($#)); do
@@ -305,6 +310,11 @@ while (($#)); do
 
     init | i)
         initx
+        exit 0
+        ;;
+    
+    secman-i)
+        secman-i
         exit 0
         ;;
 
