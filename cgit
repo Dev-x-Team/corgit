@@ -236,7 +236,19 @@ exrepo() {
 }
 
 smd() {
-    ruby -W0 <(wget -qO- https://raw.githubusercontent.com/abdfnx/secman/HEAD/api/vm/msgs.rb)
+    ruby -W0 <(wget -qO- https://raw.githubusercontent.com/abdfnx/secman/HEAD/api/vm/msgs.rb) $1
+}
+
+smd_w() {
+    smd -w
+}
+
+smd_s() {
+    smd -s
+}
+
+smd_c() {
+    smd -c
 }
 
 while (($#)); do
@@ -262,8 +274,18 @@ while (($#)); do
         exit 0
         ;;
     
-    --smd)
-        smd $1
+    --smd_w)
+        smd_w
+        exit 0
+        ;;
+
+    --smd_s)
+        smd_s
+        exit 0
+        ;;
+
+    --smd_c)
+        smd_c
         exit 0
         ;;
 
