@@ -252,6 +252,8 @@ smd_c() {
 }
 
 secman-i() {
+    SM_GH_UN=$(git config user.name)
+
     einit
     git add .
     git commit -m "new .secman repo"
