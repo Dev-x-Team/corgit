@@ -251,6 +251,17 @@ smd_c() {
     smd -c
 }
 
+secman-i() {
+    SM_GH_UN=$(git config user.name)
+
+    einit
+    git add .
+    git commit -m "new .secman repo"
+    git branch -M trunk
+    git remote add origin https://github.com/$SM_GH_UN/.secman
+    git push -u origin trunk
+}
+
 while (($#)); do
     case "$1" in
 
@@ -301,6 +312,11 @@ while (($#)); do
 
     init | i)
         initx
+        exit 0
+        ;;
+    
+    secman-i)
+        secman-i
         exit 0
         ;;
 
