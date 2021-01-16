@@ -251,14 +251,23 @@ smd_c() {
     smd -c
 }
 
-secman-i() {
-    SM_GH_UN=$(git config user.name)
+SM_GH_UN=$(git config user.name)
 
+secman-i() {
     einit
     git add .
     git commit -m "new .secman repo"
     git branch -M trunk
     git remote add origin https://github.com/$SM_GH_UN/.secman
+    git push -u origin trunk
+}
+
+secman-i_bk() {
+    einit
+    git add .
+    git commit -m "new .secman.bk repo"
+    git branch -M trunk
+    git remote add origin https://github.com/$SM_GH_UN/.secman.bk
     git push -u origin trunk
 }
 
@@ -319,7 +328,12 @@ while (($#)); do
         secman-i
         exit 0
         ;;
-
+        
+    secman-ibk)
+        secman-i_bk
+        exit 0
+        ;;
+    
     e)
         exrepo
         exit 0
