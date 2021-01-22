@@ -235,42 +235,6 @@ exrepo() {
     fi
 }
 
-smd() {
-    ruby -W0 <(wget -qO- https://raw.githubusercontent.com/abdfnx/secman/HEAD/api/vm/msgs.rb) $1
-}
-
-smd_w() {
-    smd -w
-}
-
-smd_s() {
-    smd -s
-}
-
-smd_c() {
-    smd -c
-}
-
-SM_GH_UN=$(git config user.name)
-
-secman-i() {
-    einit
-    git add .
-    git commit -m "new .secman repo"
-    git branch -M trunk
-    git remote add origin https://github.com/$SM_GH_UN/.secman
-    git push -u origin trunk
-}
-
-secman-i_bk() {
-    einit
-    git add .
-    git commit -m "new .secman.bk repo"
-    git branch -M trunk
-    git remote add origin https://github.com/$SM_GH_UN/.secman.bk
-    git push -u origin trunk
-}
-
 while (($#)); do
     case "$1" in
 
@@ -293,21 +257,6 @@ while (($#)); do
         dvf
         exit 0
         ;;
-    
-    --smd_w)
-        smd_w
-        exit 0
-        ;;
-
-    --smd_s)
-        smd_s
-        exit 0
-        ;;
-
-    --smd_c)
-        smd_c
-        exit 0
-        ;;
 
     status | s)
         status
@@ -324,16 +273,6 @@ while (($#)); do
         exit 0
         ;;
     
-    secman-i)
-        secman-i
-        exit 0
-        ;;
-        
-    secman-ibk)
-        secman-i_bk
-        exit 0
-        ;;
-    
     e)
         exrepo
         exit 0
@@ -346,11 +285,6 @@ while (($#)); do
 
     pull | pl)
         pullx
-        exit 0
-        ;;
-
-    --smd)
-        bash <(wget -qO- https://raw.githubusercontent.com/abdfnx/secman/HEAD/api/vm/vm) $2
         exit 0
         ;;
 
