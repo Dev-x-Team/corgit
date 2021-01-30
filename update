@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# steps:
+# 1- check from the release
+# 2- if the release is older than new release it's well install the new release and delete the old
+
+updateSuccess() {
+    echo "corgit was updated successfully... 💪"
+}
+
+loca() {
+    # local
+    r= git describe --tags --abbrev=0
+}
+
+sync() {
+    # sync
+    curl --silent "https://api.github.com/repos/Dev-x-Team/corgit/releases/latest" |
+        grep '"tag_name":' |
+        sed -E 's/.*"([^"]+)".*/\1/'
+}
+
+if [ -x "$(command -v manx)" ]; then
+    if [ loca == sync ]; then
+        echo "corgit is updated from the latest update"
+    else
+        . un
+
+    fi
+fi
