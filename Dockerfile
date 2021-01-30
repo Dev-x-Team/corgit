@@ -1,9 +1,5 @@
-FROM ubuntu:latest
+FROM gitpod/workspace-full
 
-COPY setup cgit un ./
-
-RUN ./setup
-RUN bash cgit -h
-RUN bash cgit -dv
-
-CMD [ "cgit -h", "cgit -dv" ]
+RUN brew install gh
+RUN /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Dev-x-Team/corgit/main/setup)"
+RUN /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/abdfnx/verx/HEAD/install.sh)"
