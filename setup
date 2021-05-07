@@ -2,7 +2,6 @@
 
 UNAME=$(uname)
 cgitUrl=https://raw.githubusercontent.com/Dev-x-Team/corgit/main/cgit
-cgitLocLD=/usr/local/bin
 
 successInstall() {
     echo "corgit was installed successfully 🤩, type cgit -h"
@@ -10,6 +9,8 @@ successInstall() {
 
 if [ -x "$(command -v curl)" ]; then
     if [[ "$UNAME" == Linux || "$UNAME" == "Darwin" ]]; then
+        cgitLocLD=/usr/local/bin
+
         if [ -x "$(command -v sudo)" ]; then
             sudo wget -P $cgitLocLD $cgitUrl
 
