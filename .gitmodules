@@ -1,4 +1,0 @@
-[submodule "corgit.wiki"]
-	path = corgit.wiki
-	url = https://github.com/Dev-x-Team/corgit/wiki
-	ignore = dirty
