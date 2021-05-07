@@ -125,9 +125,6 @@ Usage:
 Setup:
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Dev-x-Team/corgit/main/setup)"
 
-Uninstall:
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Dev-x-Team/corgit/main/un)"
-
 you can open an issue if you had any problem in https://github.com/Dev-x-Team/corgit/issues
 ```
 
