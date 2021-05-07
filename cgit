@@ -4,21 +4,19 @@
 cona="commit name: "
 brna="branch name: "
 repourl="repo url: "
-ver="cgit@1.0.4"
+
+lv=$(curl --silent "https://api.github.com/repos/secman-team/corgit/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+ver="cgit@$lv"
 crepo="Dev-x-Team/corgit"
 UNAME=$(uname)
 
 function usage() {
-    dollar="$"
-
     local u=(
         "Usage:"
         "   cgit -h: help (this output)"
         "   cgit -d: show description"
         "   cgit -v: corgit version"
         "   cgit -dv: show corgit repo"
-        "   cgit -t: show the leatest release/tag"
-        "   cgit g: init \".git\""
         "   cgit i: init \".git\" and push origin"
         "   cgit s: status"
         "   cgit sl: show the status of git by list view"
@@ -26,13 +24,7 @@ function usage() {
         "   cgit ph: push and commit"
         "   cgit pl: fetch and pull"
         " "
-        "Setup:"
-        "   /bin/bash -c \"$dollar(curl -fsSL https://raw.githubusercontent.com/Dev-x-Team/corgit/main/setup)\""
-        " "
-        "Uninstall:"
-        "   /bin/bash -c \"$dollar(curl -fsSL https://raw.githubusercontent.com/Dev-x-Team/corgit/main/un)\""
-        " "
-        "you can open an issue if you had any problem in https://github.com/Dev-x-Team/corgit/issues"
+        "you can open an issue if you had any problem in https://github.com/$crepo/issues"
     )
 
     printf "%s\n" "${u[@]}"
@@ -116,7 +108,7 @@ statusList() {
     # show git status in list view
 
     # if [ -x "$(command -v colorls)" ]; then
-    #     colorls --gs
+    #     colorls --git-status
 
     # else
     #     echo -e "there's no colorls, you can install it by type\n gem install colorls"
@@ -124,7 +116,7 @@ statusList() {
 
     if [[ "$UNAME" == "Linux" || "$UNAME" == "Darwin" ]]; then
         if [ -x "$(command -v colorls)" ]; then
-            colorls -al --gs
+            colorls -al --git-status
 
         else
             echo -e "there's no colorls\ndo you want to install it\n[Y/n]"
@@ -134,7 +126,7 @@ statusList() {
                 sudo gem install colorls
 
                 if [ -x "$(command -v colorls)" ]; then
-                    colorls -al --gs
+                    colorls -al --git-status
                 fi
             else
                 ysa
@@ -146,43 +138,11 @@ statusList() {
 }
 
 dvf() {
-    if [ -x "$(command -v gh)" ]; then
-        gh repo view $crepo
+    if [ -x "$(command -v secman)" ]; then
+        secman repo view $crepo
 
     else
-        echo "there's no gh\ndo you want to install it\n[Y/n]"
-        read -n 1 accept
-
-        if [[ $accept == "" || $accept == "Y" || $accept == "y" ]]; then
-            if [[ "$UNAME" == "Linux" || "$UNAME" == "Darwin" ]]; then
-                if [ -x "$(command -v brew)" ]; then
-                    brew install gh
-                else
-                    echo "there's no brew\ndo you want to install it\n[Y/n]"
-                    read -n 1 accept
-
-                    if [[ $accept == "" || $accept == "Y" || $accept == "y" ]]; then
-                        if [ "$UNAME" == "Linux" ]; then
-                            /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-                        elif [ "$UNAME" == "Darwin" ]; then
-                            /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-                        fi
-
-                        if [ -x "$(command -v brew)" ]; then
-                            brew install gh
-                        fi
-                    else
-                        ysa
-                    fi
-                fi
-            fi
-        else
-            ysa
-        fi
-
-        if [ -x "$(command -v gh)" ]; then
-            gh repo view $crepo
-        fi
+        echo "You must install github cli, https://cli.github.com"
     fi
 }
 
@@ -237,6 +197,11 @@ exrepo() {
     fi
 }
 
+if [ $# -eq 0 ]; then
+    usage
+    exit 0
+fi
+
 while (($#)); do
     case "$1" in
 
@@ -245,7 +210,7 @@ while (($#)); do
         exit 0
         ;;
 
-    --version | -v)
+    version | --version | -v)
         version
         exit 0
         ;;
@@ -257,16 +222,6 @@ while (($#)); do
 
     -dv)
         dvf
-        exit 0
-        ;;
-
-    g)
-        einit
-        exit 0
-        ;;
-
-    --tag | -t)
-        git describe --tags --abbrev=0
         exit 0
         ;;
 
@@ -284,7 +239,7 @@ while (($#)); do
         initx
         exit 0
         ;;
-    
+
     e)
         exrepo
         exit 0
